@@ -13,17 +13,16 @@ class Victor extends React.Component {
 
     ],
   };
-  renderComics(){
-    return this.state.posts.map((e)=>(
-      <div></div>
-    ))
-  }
+  renderComics = () =>{
+    return this.state.comics.map((c)=>
+      <VictorStickies key= {c.id} {...c} />)
+  };
 
   render() {
     return(
       <>
    <Header as="h1" >Victor's Comics</Header>
-   <VictorStickies />
+    {this.renderComics() }
    </>
     )
   }
