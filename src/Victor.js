@@ -15,7 +15,7 @@ class Victor extends React.Component {
   };
   renderComics(){
     return this.state.posts.map((e)=>(
-      <
+      <div></div>
     ))
   }
 
