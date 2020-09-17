@@ -31,6 +31,7 @@ class Zane extends React.Component {
     return (
       <div>
         <Header as="h1">Zane's places to go!</Header>
+        <br />
         {this.renderPlace()}
       </div>
     );
