@@ -3,12 +3,12 @@ import { Form, Button } from 'semantic-ui-react';
 
 
 class NewQuote extends React.Component {
-  state = { quote: " ", source: " " };
+  state = { quote: "", source: "" };
 
   handleSubmit = (e) => {
-    this.props.addQuote(this.state);
+    e.preventDefault()
+    this.props.newQuote(this.state);
     this.setState({ quote: " ", source: " "});
-    this.props.addQuote(this.state);
   }
 
   handleChange = (e) => {
