@@ -13,19 +13,26 @@ class PlaceForm extends React.Component {
   };
 
   handleSubmit = (event) => {
-    this.props.addLocationProp(this.state);
+    if (this.props.id) {
+      this.props.editPlaceProp({ ...this.state, id: this.props.id });
+      this.props.toggleButtonProp();
+    } else {
+      this.props.addLocationProp(this.state);
+      this.setState({ name: "", type: "", description: "" });
+    }
   };
 
   render() {
     return (
-      <Form onSubmit={this.handleChange}>
-        <Form.Group>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Group width="equals">
           <Form.Input
             placeholder="Name"
             label="Name"
             name="name"
             onChange={this.handleChange}
             value={this.state.name}
+            required
           />
           <Form.Input
             placeholder="Type"

@@ -12,11 +12,17 @@ class Place extends React.Component {
   };
 
   render() {
-    const { id, name, type, description } = this.props;
+    const {
+      id,
+      name,
+      type,
+      description,
+      deletePlaceProp,
+      editPlaceProp,
+    } = this.props;
     return (
       <Grid columns={3} divided>
         <Grid.Row as="h3">{name}</Grid.Row>
-
         {this.state.editing ? (
           <PlaceForm
             id={id}
@@ -24,6 +30,7 @@ class Place extends React.Component {
             type={type}
             description={description}
             toggleButtonProp={this.toggleButton}
+            editPlaceProp={editPlaceProp}
           />
         ) : (
           <Grid.Column>
@@ -36,7 +43,9 @@ class Place extends React.Component {
             <Button color="teal" onClick={this.toggleButton}>
               Edit
             </Button>
-            <Button color="red">DELETE</Button>
+            <Button color="red" onClick={() => deletePlaceProp(id)}>
+              DELETE
+            </Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
