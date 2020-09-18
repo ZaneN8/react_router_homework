@@ -15,13 +15,22 @@ class Place extends React.Component {
     const { id, name, type, description } = this.props;
     return (
       <Grid columns={3} divided>
-        <PlaceForm id={id} />
-        <Grid.Column>
-          {" "}
-          <Grid.Row as="h3">{name}</Grid.Row>
-          <Grid.Row>{type}</Grid.Row>
-          <Grid.Row>{description}</Grid.Row>
-        </Grid.Column>
+        <Grid.Row as="h3">{name}</Grid.Row>
+
+        {this.state.editing ? (
+          <PlaceForm
+            id={id}
+            name={name}
+            type={type}
+            description={description}
+            toggleButtonProp={this.toggleButton}
+          />
+        ) : (
+          <Grid.Column>
+            <Grid.Row>{type}</Grid.Row>
+            <Grid.Row>{description}</Grid.Row>
+          </Grid.Column>
+        )}
         <Grid.Row>
           <Grid.Column>
             <Button color="teal" onClick={this.toggleButton}>
