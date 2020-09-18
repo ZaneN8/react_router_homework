@@ -5,9 +5,20 @@ import { Form, Button } from 'semantic-ui-react';
 class NewQuote extends React.Component {
   state = { quote: "", source: "" };
 
+  componentDidMount() {
+    if (this.props.id)
+      this.setState({ quote: this.props.quote, body: this.props.body,});
+  }
+
   handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.newQuote(this.state);
+    e.preventDefault();
+    if (this.props.id) {
+      this.props.edit({id: this.props.id, ...this.state});
+      this.props.toggleEdit()
+    } else {
+      this.props.newQuote(this.state);
+    }
+   
     this.setState({ quote: " ", source: " "});
   }
 
