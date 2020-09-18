@@ -12,8 +12,18 @@ class Riley extends React.Component {
     ]
   };
 
+  editQuote = (quoteData) => {
+    const editQuotes = this.state.quotes.map( (quote) => {
+      if (quote.id === quoteData.id)
+        return quoteData;
+      return quote
+    });
+    this.setState({quotes: editQuotes});
+  }
+
   renderQuotes = () => {
-    return this.state.quotes.map( quote => <Quote key={quote.id} {...quote} />)
+    return this.state.quotes.map( quote => <Quote key={quote.id} {...quote}
+      edit={this.editQuote} />)
   };
 
   getId = () => {
