@@ -12,22 +12,40 @@ class Place extends React.Component {
   };
 
   render() {
-    const { id, name, type, description } = this.props;
+    const {
+      id,
+      name,
+      type,
+      description,
+      deletePlaceProp,
+      editPlaceProp,
+    } = this.props;
     return (
       <Grid columns={3} divided>
-        <PlaceForm id={id} />
-        <Grid.Column>
-          {" "}
-          <Grid.Row as="h3">{name}</Grid.Row>
-          <Grid.Row>{type}</Grid.Row>
-          <Grid.Row>{description}</Grid.Row>
-        </Grid.Column>
+        <Grid.Row as="h3">{name}</Grid.Row>
+        {this.state.editing ? (
+          <PlaceForm
+            id={id}
+            name={name}
+            type={type}
+            description={description}
+            toggleButtonProp={this.toggleButton}
+            editPlaceProp={editPlaceProp}
+          />
+        ) : (
+          <Grid.Column>
+            <Grid.Row>{type}</Grid.Row>
+            <Grid.Row>{description}</Grid.Row>
+          </Grid.Column>
+        )}
         <Grid.Row>
           <Grid.Column>
             <Button color="teal" onClick={this.toggleButton}>
               Edit
             </Button>
-            <Button color="red">DELETE</Button>
+            <Button color="red" onClick={() => deletePlaceProp(id)}>
+              DELETE
+            </Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
