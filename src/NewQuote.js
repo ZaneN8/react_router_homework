@@ -6,8 +6,12 @@ class NewQuote extends React.Component {
   state = { quote: "", source: "" };
 
   componentDidMount() {
-    if (this.props.id)
-      this.setState({ quote: this.props.quote, body: this.props.body,});
+    if (this.props.id) {
+      this.setState({ 
+        quote: this.props.quote, 
+        source: this.props.source,
+      });
+    }
   }
 
   handleSubmit = (e) => {
@@ -24,7 +28,7 @@ class NewQuote extends React.Component {
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value});
-  }
+  };
 
 
   render () {
@@ -51,9 +55,9 @@ class NewQuote extends React.Component {
       <Button color='purple' type='submit'>Submit</Button>
     </Form>
 
-    )
+    );
   }
-};
+}
 
 
 export default NewQuote;

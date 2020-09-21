@@ -6,16 +6,16 @@ import NewQuote from './NewQuote';
 class Quote extends React.Component {
   state = { editing: false, };
 
-  toggleEdit = () => this.setState({ediing: !this.state.editing,});
+  toggleEdit = () => this.setState({editing: !this.state.editing, });
 
   render() {
-    const {id, quote, source} = this.props
+    const {id, quote, source, deleteQuote} = this.props
     return (
       <Segment>
         
           {
             this.state.editing ? 
-            <NewQuote {...this.props} 
+            <NewQuote {...this.props} toggleEdit={this.toggleEdit}
             id={id}
             quote={quote}
             source={source}
@@ -28,10 +28,16 @@ class Quote extends React.Component {
           </div>
           }
           <div>
-          <Button animated >
+          <Button onClick={this.toggleEdit} animated >
             <Button.Content onClick={this.toggleEdit} visible>Edit</Button.Content>
-            <Button.Content hidden>
+            <Button.Content onClick={this.toggleEdit} hidden>
               <Icon name='pencil' />
+            </Button.Content>
+          </Button>
+          <Button onClick={() => deleteQuote(id)} animated >
+            <Button.Content  visible>Delete</Button.Content>
+            <Button.Content  hidden>
+              <Icon color='red' name='trash' />
             </Button.Content>
           </Button>
           </div>

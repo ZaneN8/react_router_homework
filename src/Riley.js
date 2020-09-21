@@ -9,6 +9,7 @@ class Riley extends React.Component {
       {id: 1, source: "John Wayne", quote: "What’s the secret of success? Right decisions. How do you make right decisions? Experience. How do you get experience? Wrong decisions."},
       {id: 2, source: "Oscar Wilde", quote: "To live is the rarest thing in the world. Most people exist, that is all."},
       {id: 3, source: "Every Mom Ever", quote: "BECAUSE I SAID SO!"},
+      {id: 4, source: "J Daddy", quote: "Yo"}
     ]
   };
 
@@ -21,9 +22,20 @@ class Riley extends React.Component {
     this.setState({quotes: editQuotes});
   }
 
+  deleteQuote = (quoteId) => {
+    const filteredQuotes = this.state.quotes.filter((q) => q.id !== quoteId);
+    this.setState({
+      quotes: filteredQuotes,
+    });
+  };
+
   renderQuotes = () => {
-    return this.state.quotes.map( quote => <Quote key={quote.id} {...quote}
-      edit={this.editQuote} />)
+    return this.state.quotes.map( quote => 
+      <Quote key={quote.id}
+            {...quote}
+            edit={this.editQuote} 
+            deleteQuote={this.deleteQuote} />)
+      
   };
 
   getId = () => {
@@ -38,13 +50,15 @@ class Riley extends React.Component {
     this.setState({ quotes: [quote, ...quotes], });
   };
 
+
+
   render() {
     return (
-    <>
-    <Header color='purple' as='h1'>Quotes For All</Header>
-    <NewQuote newQuote={this.addQuote} />
-    { this.renderQuotes() }
-    </>
+      <>
+        <Header color='purple' as='h1'>Quotes For All</Header>
+        <NewQuote newQuote={this.addQuote} />
+        { this.renderQuotes() }
+      </>
     )
   }
 }
