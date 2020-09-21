@@ -23,7 +23,6 @@ function App() {
           <Route exact path="/scott" component={Scott}></Route>
           <Route exact path="/riley" component={Riley}></Route>
           <Route exact path="/victor" component={Victor}></Route>
-
           <Route component={NoMatch} />
         </Switch>
       </Container>
